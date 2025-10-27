@@ -1,5 +1,6 @@
 import { description, title, url } from "@/lib/metadata";
 import { Metadata } from "next";
+import HelloButton from "@/components/hello-button";
 
 export const dynamic = "force-dynamic";
 
@@ -36,6 +37,12 @@ export default function Home() {
     <main className="flex flex-col gap-3 place-items-center px-4">
       <span className="text-2xl">{title}</span>
       <span className="text-muted-foreground">{description}</span>
+      <img
+        src="https://cdn.tevaera.com/guilds/YoYo/YoYo.png"
+        alt="YoYo"
+        className="w-48 h-48 object-contain"
+      />
+      <HelloButton />
     </main>
   );
 }
