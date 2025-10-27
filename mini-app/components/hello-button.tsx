@@ -28,8 +28,10 @@ export default function HelloButton() {
       setPoints(newPoints);
       localStorage.setItem("lastClaim", new Date().toISOString());
       setDisabled(true);
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      const message =
+        e instanceof Error ? e.message : typeof e === "string" ? e : "An error occurred";
+      setError(message);
     } finally {
       setLoading(false);
     }
