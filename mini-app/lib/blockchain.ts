@@ -1,6 +1,5 @@
 import { ethers } from "ethers";
 
-const rpcUrl = process.env.NEXT_PUBLIC_RPC_URL;
 const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
 if (!contractAddress) {
@@ -13,12 +12,14 @@ const abi = [
 ];
 
 export async function claimHello(): Promise<number> {
-  if (!window.ethereum) {
+  // The browser may not expose `ethereum` on the global `window` object
+  // in a type‑safe way. We cast to `any` to avoid a TypeScript error.
+  if (!(window as any).ethereum) {
     throw new Error("No wallet connected");
   }
 
   // Use the browser provider (window.ethereum) to get a signer
-  const provider = new ethers.BrowserProvider(window.ethereum);
+  const provider = new ethers.BrowserProvider((window as any).ethereum);
   const signer = await provider.getSigner();
 
   const contract = new ethers.Contract(contractAddress, abi, signer);
