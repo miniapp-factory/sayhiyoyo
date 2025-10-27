@@ -34,9 +34,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-3 place-items-center px-4">
-      <span className="text-2xl">{title}</span>
-      <span className="text-muted-foreground">{description}</span>
+    <main className="flex flex-col gap-4 place-items-center px-4 py-8">
+      <h1 className="text-3xl font-bold">{title}</h1>
+      <p className="text-muted-foreground text-center max-w-2xl">{description}</p>
       <img
         src="https://cdn.tevaera.com/guilds/YoYo/YoYo.png"
         alt="YoYo"
